@@ -1,10 +1,10 @@
-const Team = require('../models/Team');
-const mongoose = require('mongoose');
-const ScoreAudit = require('../models/ScoreAudit');
-const User = require('../models/User');
+import Team from '../models/Team.js';
+import mongoose from 'mongoose';
+import ScoreAudit from '../models/ScoreAudit.js';
+import User from '../models/User.js';
 
 // Dashboard for admin / manager
-exports.getDashboard = async (req, res) => {
+export const getDashboard = async (req, res) => {
   try {
     const teams = await Team.find().populate('teamHead', 'name email').lean();
     teams.forEach(team => {
@@ -18,7 +18,7 @@ exports.getDashboard = async (req, res) => {
 };
 
 // Assign score (admin or manager) with round support
-exports.assignScore = async (req, res) => {
+export const assignScore = async (req, res) => {
   try {
     const { teamId, score, round = 1 } = req.body;
     const userId = req.user.id;
@@ -90,7 +90,7 @@ exports.assignScore = async (req, res) => {
 };
 
 // Compute top 2 qualifiers per category (round-based)
-exports.computeQualifiers = async (req, res) => {
+export const computeQualifiers = async (req, res) => {
   try {
     const round = Number(req.query.round) || 1;
     const teams = await Team.find().lean();
@@ -117,7 +117,7 @@ exports.computeQualifiers = async (req, res) => {
 };
 
 // Compute top 3 winners (round-based)
-exports.computeWinners = async (req, res) => {
+export const computeWinners = async (req, res) => {
   try {
     const round = Number(req.query.round) || 1;
     const teams = await Team.find().lean();

@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-exports.requireAuth = async (req, res, next) => {
+export const requireAuth = async (req, res, next) => {
   try {
     // 🔍 Debug logs
     console.log("🔍 Cookies received:", req.cookies);

@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 const ScoreAuditSchema = new mongoose.Schema({
   team: { type: mongoose.Schema.Types.ObjectId, ref: 'Team', required: true },
   oldScores: Object,
@@ -7,4 +8,5 @@ const ScoreAuditSchema = new mongoose.Schema({
   role: String,
   createdAt: { type: Date, default: Date.now }
 });
-module.exports = mongoose.model('ScoreAudit', ScoreAuditSchema);
+
+export default mongoose.model('ScoreAudit', ScoreAuditSchema);

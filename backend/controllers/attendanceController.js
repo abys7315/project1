@@ -1,9 +1,11 @@
-const Team = require('../models/Team');
-exports.listTeams = async (req, res) => {
+import Team from '../models/Team.js';
+
+export const listTeams = async (req, res) => {
   const teams = await Team.find().populate('teamHead', 'name email').lean();
   res.json(teams);
 };
-exports.toggleAttendance = async (req, res) => {
+
+export const toggleAttendance = async (req, res) => {
   try {
     const { teamId } = req.body;
     const team = await Team.findById(teamId);

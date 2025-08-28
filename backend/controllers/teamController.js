@@ -1,8 +1,8 @@
-const Team = require('../models/Team');
-const mongoose = require('mongoose');
+import Team from '../models/Team.js';
+import mongoose from 'mongoose';
 
 // Get current user's team
-exports.getMyTeam = async (req, res) => {
+export const getMyTeam = async (req, res) => {
   try {
     const team = await Team.findOne({ teamHead: req.user.id })
       .populate('teamHead', 'name email')
@@ -16,7 +16,7 @@ exports.getMyTeam = async (req, res) => {
 };
 
 // Assign category to team
-exports.selectCategory = async (req, res) => {
+export const selectCategory = async (req, res) => {
   try {
     const team = await Team.findOne({ teamHead: req.user.id });
     if (!team) return res.status(404).json({ message: 'Team not found' });
@@ -52,7 +52,7 @@ exports.selectCategory = async (req, res) => {
 };
 
 // ✅ New: Return fixed categories
-exports.getCategories = async (req, res) => {
+export const getCategories = async (req, res) => {
   try {
     const categories = [
       { _id: 1, name: 'Category1' },

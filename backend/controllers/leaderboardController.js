@@ -1,6 +1,6 @@
-const Team = require('../models/Team');
+import Team from '../models/Team.js';
 
-exports.getLeaderboard = async (req, res) => {
+export const getLeaderboard = async (req, res) => {
   try {
     const teams = await Team.find().populate('teamHead', 'name').lean();
 

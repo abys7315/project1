@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Judge slot schema
 const judgeSlotSchema = new mongoose.Schema({
@@ -23,7 +23,7 @@ const memberSchema = new mongoose.Schema({
 
 const TeamSchema = new mongoose.Schema({
   teamName: { type: String, required: true, unique: true, trim: true },
-  teamHead: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true }, 
+  teamHead: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
 
   members: { type: [memberSchema], default: [] },
 
@@ -47,4 +47,4 @@ TeamSchema.pre('save', function (next) {
   next();
 });
 
-module.exports = mongoose.model('Team', TeamSchema);
+export default mongoose.model('Team', TeamSchema);

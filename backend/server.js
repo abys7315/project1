@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import connectDB from './config/db.js';  // Note the `.js` extension for ESM
+import connectDB from './config/db.js'; // Note the `.js` extension for ESM
 
 // Load environment variables
 dotenv.config();
@@ -30,12 +30,18 @@ app.use(
 );
 
 // Routes (ESM needs explicit `.js` extensions unless you set up resolver)
+// --- FIX START ---
+// Reverted the import statements back to the default import syntax.
+// This is the correct way to import CommonJS modules (which use module.exports)
+// into an ES module file.
 import authRoutes from './routes/authRoutes.js';
 import teamRoutes from './routes/teamRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import attendanceRoutes from './routes/attendanceRoutes.js';
 import leaderboardRoutes from './routes/leaderboardRoutes.js';
 import auditRoutes from './routes/auditRoutes.js';
+// --- FIX END ---
+
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -46,5 +52,5 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/audit', auditRoutes);
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log('Server running on port', PORT));

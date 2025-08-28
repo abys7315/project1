@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import * as teamCtrl from '../controllers/teamController.js';
+
 const router = express.Router();
-const { requireAuth } = require('../middleware/auth');
-const teamCtrl = require('../controllers/teamController');
 
 // Get current user's team
 router.get('/me', requireAuth, teamCtrl.getMyTeam);
@@ -15,4 +16,4 @@ router.post('/select-category', requireAuth, teamCtrl.selectCategory);
 // ✅ New route to fetch available categories
 router.get('/get-category', requireAuth, teamCtrl.getCategories);
 
-module.exports = router;
+export default router;

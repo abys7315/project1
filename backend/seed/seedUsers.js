@@ -1,8 +1,11 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const User = require('../models/User');
-const connectDB = require('../config/db');
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import User from '../models/User.js';
+import connectDB from '../config/db.js';
+
+// Load environment variables
+dotenv.config();
 
 const run = async () => {
   await connectDB(process.env.MONGO_URI || "mongodb+srv://abys7315:Abys2875%40%23@sparkathon.ho8cuvo.mongodb.net/?retryWrites=true&w=majority&appName=sparkathon");
@@ -19,7 +22,7 @@ const run = async () => {
     { email: 'abhay2@gmail.com', password: 'abhay2', regNumber: 'ADMIN002', contactNumber: '9999999992' },
     { email: 'abhay3@gmail.com', password: 'abhay3', regNumber: 'ADMIN003', contactNumber: '9999999993' },
     { email: 'abhay4@gmail.com', password: 'abhay4', regNumber: 'ADMIN004', contactNumber: '9999999994' },
-    { email: 'abhay5@gmail.com', password: 'abhay5', regNumber: 'ADMIN005', contactNumber: '9999999995' },n
+    { email: 'abhay5@gmail.com', password: 'abhay5', regNumber: 'ADMIN005', contactNumber: '9999999995' }
   ];
 
   // original admin

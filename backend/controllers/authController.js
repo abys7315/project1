@@ -1,7 +1,7 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const Team = require('../models/Team');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import Team from '../models/Team.js';
 
 // Utility: Generate JWT
 const generateToken = (user) => {
@@ -19,7 +19,7 @@ const isValidEmail = (email) => {
 };
 
 // Register Team Head
-exports.registerTeamHead = async (req, res) => {
+export const registerTeamHead = async (req, res) => {
   try {
     const {
       name,
@@ -106,7 +106,7 @@ exports.registerTeamHead = async (req, res) => {
 };
 
 // Login
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -135,6 +135,6 @@ exports.login = async (req, res) => {
 };
 
 // Logout
-exports.logout = (req, res) => {
+export const logout = (req, res) => {
   res.json({ message: 'Logged out' });
 };

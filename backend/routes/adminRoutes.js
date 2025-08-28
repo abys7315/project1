@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import requireRole from '../middleware/roles.js';
+import * as adminCtrl from '../controllers/adminController.js';
+
 const router = express.Router();
-const { requireAuth } = require('../middleware/auth');
-const requireRole = require('../middleware/roles');
-const adminCtrl = require('../controllers/adminController');
 
 // Dashboard: accessible by admin or event-manager
 router.get(
@@ -36,4 +37,4 @@ router.get(
   adminCtrl.computeWinners
 );
 
-module.exports = router;
+export default router;

@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import * as authCtrl from '../controllers/authController.js';
+
 const router = express.Router();
-const { requireAuth } = require('../middleware/auth');
-const authCtrl = require('../controllers/authController');
 
 router.post('/login', authCtrl.login);
 router.post('/register', authCtrl.registerTeamHead);
@@ -11,8 +12,9 @@ router.post('/logout', authCtrl.logout);
 router.get('/check', requireAuth, (req, res) => {
   res.json({
     message: 'User authenticated',
-    user: { id: req.user._id, role: req.user.role, name: req.user.name }
+    // Note: The user object from requireAuth middleware doesn't have _id
+    user: { id: req.user.id, role: req.user.role, name: req.user.name }
   });
 });
 
-module.exports = router;
+export default router;

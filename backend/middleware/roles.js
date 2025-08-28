@@ -1,4 +1,4 @@
-module.exports = function(allowedRoles = []) {
+export default function(allowedRoles = []) {
   if (!Array.isArray(allowedRoles)) allowedRoles = [allowedRoles];
   return (req, res, next) => {
     if (!req.user) return res.status(401).json({ message: 'Not authenticated' });

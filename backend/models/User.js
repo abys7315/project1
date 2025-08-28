@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
-    required: true 
+  name: {
+    type: String,
+    required: true
   },
 
   email: {
@@ -20,14 +20,14 @@ const UserSchema = new mongoose.Schema({
     }
   },
 
-  password: { 
-    type: String, 
-    required: true 
+  password: {
+    type: String,
+    required: true
   },
 
-  regNumber: { 
-    type: String, 
-    required: true, 
+  regNumber: {
+    type: String,
+    required: true,
     unique: true, // ✅ reg number unique across DB
     uppercase: true,
     trim: true
@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
     required: false, // optional
     validate: {
       validator: function (v) {
-        return !v || /^\d{10}$/.test(v); 
+        return !v || /^\d{10}$/.test(v);
       },
       message: props => `${props.value} must be a 10-digit number!`
     }
@@ -62,9 +62,9 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
 
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
@@ -73,4 +73,4 @@ UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ regNumber: 1 }, { unique: true });
 UserSchema.index({ contactNumber: 1 }, { unique: true });
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);
